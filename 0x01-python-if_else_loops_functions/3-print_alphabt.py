@@ -1,4 +1,5 @@
 #!/usr/bin/python3
 print("Lowercase Alphabets are:")
-for i in range(97, 123):
-    print(chr(i), end='')
+for a in range(97, 123):
+    if chr(a) != 'e' and chr(a) != 'q':
+        print(chr(a), end='')
