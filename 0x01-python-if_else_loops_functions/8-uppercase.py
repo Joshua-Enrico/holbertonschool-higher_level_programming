@@ -4,4 +4,4 @@ def uppercase(str):
         if ord('a') <= ord(c):
             c = chr(ord(c) - (ord('a') - ord('A')))
         print("{:s}".format(c), end='')
-    print ("")
+    print("")
