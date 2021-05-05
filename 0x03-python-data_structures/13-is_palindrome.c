@@ -2,47 +2,31 @@
 #include <stdlib.h>
 #include "lists.h"
 /**
- * is_palindrome - check if palindrome
- * @head: pointer to structure
- * Return: 1 if true or 0 if false
+ * is_palindrome - function to call check_pal to see if list is palindrome
+ * @head: ptr to the beginning of the list
+ * Return: 0 if not palindrome else 1
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *tmp;
-	int counter = 0, half, counter2 = 0;
-	int *buffer = NULL;
-
-	if (!head)
-		return (0);
-
-	if (!*head)
+	if (head == NULL || *head == NULL)
 		return (1);
-	tmp = *head;
-	while (tmp && tmp->next)
+	return (check_pal(head, *head));
+}
+
+/**
+ * check_pal - function to check if the list is palindrome
+ * @head: ptr to the beginning of the list
+ * @last: ptr to the end of the list
+ * Return: 0 if not palindrom else 1
+ */
+int check_pal(listint_t **head, listint_t *last)
+{
+	if (last == NULL)
+		return (1);
+	if (check_pal(head, last->next) && (*head)->n == last->n)
 	{
-		tmp = tmp->next;
-		counter++;
+		*head = (*head)->next;
+		return (1);
 	}
-	buffer = malloc(sizeof(int) * counter);
-	if (tmp == NULL)
-		return (0);
-	tmp = *head;
-	counter = 0;
-	while (tmp)
-	{
-		buffer[counter] = tmp->n;
-		counter++;
-		tmp = tmp->next;
-	}
-	half = counter / 2;
-	while (half)
-	{
-		if (buffer[counter2] != buffer[counter - 1])
-			return (0);
-		half--;
-		counter2++;
-		counter--;
-	}
-	free(buffer);
-	return (1);
+	return (0);
 }
