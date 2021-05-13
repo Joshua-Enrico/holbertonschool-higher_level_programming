@@ -1,45 +1,59 @@
+#include "/usr/include/python3.4/Python.h"
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-/**
- * main - generate a key depending on a username for crackme5
- * @argc: number of arguments passed
- * @argv: arguments passed to main
- *
- * Return: 0 on success, 1 on error
- */
-int main(int argc, char *argv[])
+void print_hexn(const char *str, int n)
 {
-	unsigned int i, b;
-	size_t len, add;
-	char *l = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
-	char p[7] = "      ";
+	int i = 0;
 
-	if (argc != 2)
+	for (; i < n - 1; ++i)
+		printf("%02x ", (unsigned char) str[i]);
+
+	printf("%02x", str[i]);
+}
+
+void print_python_bytes(PyObject *p)
+{
+	PyBytesObject *clone = (PyBytesObject *) p;
+	int calc_bytes, clone_size = 0;
+
+	printf("[.] bytes object info\n");
+	if (PyBytes_Check(clone))
 	{
-		printf("Correct usage: ./keygen5 username\n");
-		return (1);
+		clone_size = PyBytes_Size(p);
+		calc_bytes = clone_size + 1;
+
+		if (calc_bytes >= 10)
+			calc_bytes = 10;
+
+		printf("  size: %d\n", clone_size);
+		printf("  trying string: %s\n", clone->ob_sval);
+		printf("  first %d bytes: ", calc_bytes);
+		print_hexn(clone->ob_sval, calc_bytes);
+		printf("\n");
 	}
-	len = strlen(argv[1]);
-	p[0] = l[(len ^ 59) & 63];
-	for (i = 0, add = 0; i < len; i++)
-		add += argv[1][i];
-	p[1] = l[(add ^ 79) & 63];
-	for (i = 0, b = 1; i < len; i++)
-		b *= argv[1][i];
-	p[2] = l[(b ^ 85) & 63];
-	for (b = argv[1][0], i = 0; i < len; i++)
-		if ((char)b <= argv[1][i])
-			b = argv[1][i];
-	srand(b ^ 14);
-	p[3] = l[rand() & 63];
-	for (b = 0, i = 0; i < len; i++)
-		b += argv[1][i] * argv[1][i];
-	p[4] = l[(b ^ 239) & 63];
-	for (b = 0, i = 0; (char)i < argv[1][0]; i++)
-		b = rand();
-	p[5] = l[(b ^ 229) & 63];
-	printf("%s\n", p);
-	return (0);
+	else
+	{
+		printf("  [ERROR] Invalid Bytes Object\n");
+	}
+}
+
+void print_python_list(PyObject *p)
+{
+	int i = 0, list_len = 0;
+	PyObject *item;
+	PyListObject *clone = (PyListObject *) p;
+
+	printf("[*] Python list info\n");
+	list_len = PyList_GET_SIZE(p);
+	printf("[*] Size of the Python List = %d\n", list_len);
+	printf("[*] Allocated = %d\n", (int) clone->allocated);
+
+	for (; i < list_len; ++i)
+	{
+		item = PyList_GET_ITEM(p, i);
+		printf("Element %d: %s\n", i, item->ob_type->tp_name);
+
+		if (PyBytes_Check(item))
+			print_python_bytes(item);
+	}
 }
