@@ -10,13 +10,17 @@ class Node:
         ___position (tuple): pos of the square
     """
     def __init__(self, data, next_node=None):
-           self.data = data
-           self.next_node = next_node
-    
+        self.data = data
+        self.next_node = next_node
+
     @property
     def data(self):
+        """getter of __data
+        Returns:
+            data stored inside the node
+        """
         return self.__data
-    
+
     @data.setter
     def data(self, value):
         """setter of __data
@@ -29,32 +33,54 @@ class Node:
             raise TypeError("data must be an integer")
         self.__data = value
 
-
     @property
     def next_node(self):
+        """getter of __next_node
+        Returns:
+           the next node in the linked list
+        """
         return self.__next_node
-        
 
     @next_node.setter
     def next_node(self, value):
+        """setter of __next_node
+        Args:
+            value (Node): next node in the linked list
+        Returns:
+            None
+        """
         if value is not None and type(value) is not Node:
             raise TypeError("next_node must be a Node object")
         else:
             self.__next_node = value
-    
+
     def __str__(self):
+        """String representation of Node instance
+        Returns:
+            Formatted string representing the node
+        """
         return str(self.__data)
 
 
-
-
 class SinglyLinkedList:
-
+    """Represents a single linked list
+    Attributes:
+        __head (Node): head of the linked list
+    """
     def __init__(self):
+        """Initializes the linked list
+        Returns:
+            None
+        """
         self.__head = None
-    
-    def sorted_insert(self, value):
 
+    def sorted_insert(self, value):
+        """ inserts a new Node instance into the correct sorted position
+        Args:
+            value (int): data stored inside the new node
+        Returns:
+            None
+        """
         new = Node(value)
         tmp = self.__head
 
@@ -71,6 +97,10 @@ class SinglyLinkedList:
         tmp.next_node = new
 
     def __str__(self):
+        """String representation of SinglyLinkedList instance
+        Returns:
+            Formatted string representing the linked list
+        """
         string = ""
         tmp = self.__head
         while tmp is not None:
@@ -79,4 +109,3 @@ class SinglyLinkedList:
                 string += "\n"
             tmp = tmp.next_node
         return string
-
