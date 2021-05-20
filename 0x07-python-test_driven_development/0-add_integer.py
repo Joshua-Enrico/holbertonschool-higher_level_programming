@@ -4,12 +4,14 @@ This is "0-add_integer" module
 
 this module contains add_integers function that adds two integers
 """
+
+
 def add_integer(a, b=98):
     """Return the addition of two numbers with spcific validation
     Arguments:
         a (int or float): first value to add
         b (int or float): second value to add
-    
+
     Return:
         the addition of a and b
     """
@@ -21,4 +23,4 @@ def add_integer(a, b=98):
         a = int(a)
     if type(b) is float:
         b = int(b)
-    return a + b    
+    return a + b
