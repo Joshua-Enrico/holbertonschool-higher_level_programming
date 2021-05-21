@@ -35,6 +35,7 @@ Using the default b number(98)
     93
 
 Testing general additions
+-------------------------
 
     >>> add_integer(1, 2)
     3
@@ -43,6 +44,7 @@ Testing general additions
     98
 
 Testing full negative numbers
+-----------------------------
 
     >>> add_integer(-5, -5)
     -10
@@ -57,6 +59,7 @@ Float arguments
 ``add_integer`` should convert flaots to integers before make the addition
 
 Passing float numbers
+---------------------
 
     >>> add_integer(13.5, 5)
     18
@@ -68,6 +71,7 @@ Passing float numbers
     -18
 
 Test parsing none as input
+==========================
 
     >>> add_integer(None)
     Traceback (most recent call last):
@@ -142,3 +146,7 @@ minimun arguments needed: 1
     >>> add_integer(3, 4, 13)
     Traceback (most recent call last):
     TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
+
+    >>> add_integer(,)
+    Traceback (most recent call last):
+    SyntaxError: invalid syntax
