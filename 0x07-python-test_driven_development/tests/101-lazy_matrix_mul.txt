@@ -93,7 +93,13 @@ Handling not allowed arguments
 	Traceback (most recent call last):
 	TypeError: invalid data type for einsum
 
-	>>> b = [[1, 2.456],[2, 3], [24]]
+	>>> a = [[1, 2.456],[2, 3], [32]]
+	>>> b = [[1, 2],[3, 4]]
+	>>> lazy_matrix_mul(a, b)
+	Traceback (most recent call last):
+	ValueError: setting an array element with a sequence.
+    
+    >>> b = [[1, 2.456],[2, 3], [24]]
 	>>> a = [[1, 2],[3, 4]]
 	>>> lazy_matrix_mul(a, b)
 	Traceback (most recent call last):
