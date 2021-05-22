@@ -117,11 +117,8 @@ class TestMaxInteger(unittest.TestCase):
         test_list = [1, 2, [3], 46]
         self.assertRaises(TypeError)
 
-        test_list = [1, 2, float('inf'), 46]
-        self.assertRaises(TypeError)
-
         test_list = []
-        self.assertRaises(TypeError)
+        self.assertEqual(max_integer(test_list), None)
 
         test_list = [1, 2, True, 46]
         self.assertRaises(TypeError)

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 This is "4-print_square.py" module
-this module contains print_square function that 
+this module contains print_square function that
 prints a square of ####
 """
 

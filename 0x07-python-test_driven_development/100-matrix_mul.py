@@ -96,14 +96,14 @@ def matrix_mul(m_a, m_b):
     if m_b == []:
         raise ValueError(b_empty_error)
 
-    size_a = len(m_a[0])
-    size_b = len(m_b[0])
+
 
     for row in m_a:
         if row == []:
-            raise ValueError(b_empty_error)
+            raise ValueError(a_empty_error)
         if type(row) is not list:
             raise TypeError(a_list_of_list_error)
+        size_a = len(m_a[0])
         if len(row) != size_a:
             raise TypeError(a_size_error)
         for elm in row:
@@ -115,6 +115,7 @@ def matrix_mul(m_a, m_b):
             raise ValueError(b_empty_error)
         if type(row) is not list:
             raise TypeError(b_list_of_list_error)
+        size_b = len(m_b[0])
         if len(row) != size_b:
             raise TypeError(b_size_error)
         for elm in row:
