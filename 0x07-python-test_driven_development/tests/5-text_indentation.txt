@@ -191,3 +191,4 @@ Handling not allowed arguments
     >>> string = ""
 
     >>> text_indentation(string)
+
