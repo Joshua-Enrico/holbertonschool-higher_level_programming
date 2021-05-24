@@ -12,8 +12,8 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """ initializes height and width """
-        self.height = height
         self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     @property
@@ -67,7 +67,7 @@ class Rectangle:
 
     def __repr__(self):
         """ return representation of rectangle """
-        return "Rectangle(" + str(self.__width) + ","\
+        return "Rectangle(" + str(self.__width) + ", "\
                             + str(self.__height) + ")"
 
     def __del__(self):
@@ -84,13 +84,9 @@ class Rectangle:
             raise TypeError("rect_2 must be an instance of Rectangle")
         if rect_1.area() >= rect_2.area():
             return rect_1
-        else:
-            return rect_2
+        return rect_2
 
     @classmethod
     def square(cls, size=0):
         """ return an object square """
-        if size:
-            return cls(size, size)
-        else:
-            pass
+        return cls(size, size)
