@@ -52,11 +52,10 @@ class Rectangle:
     def __str__(self):
         """Return a square"""
         string = ""
-        if self.__width == 0 and self.__height == 0:
+       if self.__height == 0 or self.__width == 0:
             return string
         for i in range(self.__height):
-            for b in range(self.__width):
-                string += "#"
+            string += ("#" * self.__width)
             if i < self.__height - 1:
-                string += "\n"
+                string += '\n'
         return string
