@@ -90,4 +90,7 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """ return an object square """
-        return cls(size, size)
+        if size:
+            return cls(size, size)
+        else:
+            pass
