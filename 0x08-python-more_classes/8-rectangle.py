@@ -57,9 +57,13 @@ class Rectangle:
     def __str__(self):
         """Return a square"""
         string = ""
-        if self.__width != 0 and self.__height != 0:
-            string += "\n".join(str(self.print_symbol) * self.__width
-                                for j in range(self.__height))
+        if self.__height == 0 or self.__width == 0:
+            return string
+        for i in range(self.__height):
+            string += (str(self.print_symbol) * self.__width)
+            if i < self.__height - 1:
+                string += '\n'
+        return string
 
     def __repr__(self):
         """Represents a rectangle"""
