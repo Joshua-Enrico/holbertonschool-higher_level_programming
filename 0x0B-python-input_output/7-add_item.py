@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-this script add all arguments to a python list and 
+this script add all arguments to a python list and
 save them into a specific given file
 """
 
