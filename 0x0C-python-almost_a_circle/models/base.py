@@ -50,9 +50,9 @@ class Base:
     def create(cls, **dictionary):
         if cls.__name__ is "Rectangle":
             dummy = cls(1, 1)
-        if cls.__name__ is "Square":
+        elif cls.__name__ is "Square":
             dummy = cls(1)
-
+        dummy.update(**dictionary)
         return dummy
 
     @classmethod
