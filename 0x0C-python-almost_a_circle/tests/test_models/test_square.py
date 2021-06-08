@@ -31,6 +31,7 @@ class testcases(unittest.TestCase):
     """testing square class"""
     @classmethod
     def setUpClass(cls):
+        """test"""
         Base._Base_objects = 0
         cls.c1 = Square(1)
         cls.c2 = Square(2, 3)
@@ -44,6 +45,7 @@ class testcases(unittest.TestCase):
         cls.c5.id = 10
 
     def test_id(self):
+        """test"""
         self.assertEqual(self.c1.id, 1)
         self.assertEqual(self.c2.id, 2)
         self.assertEqual(self.c3.id, 3)
@@ -51,6 +53,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.id, 10)
 
     def test_size(self):
+        """test"""
         self.assertEqual(self.c1.size, 1)
         self.assertEqual(self.c2.size, 2)
         self.assertEqual(self.c3.size, 3)
@@ -58,6 +61,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.size, 7)
 
     def test_width(self):
+        """test"""
         self.assertEqual(self.c1.width, 1)
         self.assertEqual(self.c2.width, 2)
         self.assertEqual(self.c3.width, 3)
@@ -65,6 +69,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.width, 7)
 
     def test_height(self):
+        """test"""
         self.assertEqual(self.c1.height, 1)
         self.assertEqual(self.c2.height, 2)
         self.assertEqual(self.c3.height, 3)
@@ -72,6 +77,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.height, 7)
 
     def test_x(self):
+        """test"""
         self.assertEqual(self.c1.x, 0)
         self.assertEqual(self.c2.x, 3)
         self.assertEqual(self.c3.x, 4)
@@ -79,6 +85,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.x, 8)
 
     def test_y(self):
+        """test"""
         self.assertEqual(self.c1.y, 0)
         self.assertEqual(self.c2.y, 0)
         self.assertEqual(self.c3.y, 5)
@@ -86,6 +93,7 @@ class testcases(unittest.TestCase):
         self.assertEqual(self.c5.y, 9)
 
     def test_arg(self):
+        """test"""
         with self.assertRaises(TypeError):
             s = Square()
 

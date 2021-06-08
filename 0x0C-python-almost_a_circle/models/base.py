@@ -30,7 +30,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """"""
+        """hello"""
         file = []
         file_name = cls.__name__ + ".json"
         if list_objs is not None:
@@ -41,6 +41,7 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
+        """json to str"""
         if json_string is None or len(json_string) == 0:
             return []
 
@@ -48,6 +49,7 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
+        """create"""
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
         elif cls.__name__ == "Square":
@@ -57,6 +59,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
+        """load from file"""
         filename = cls.__name__ + ".json"
         file = []
         try:
