@@ -550,32 +550,4 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             r = Rectangle(0, 1)
 
-    def test_height_valueerror(self):
-        """Test ints <= 0 for height"""
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
-            r = Rectangle(1, -1)
-        with self.assertRaisesRegex(ValueError, "height must be > 0"):
-            r = Rectangle(1, 0)
-
-    def test_x_valueerror(self):
-        """Test ints < 0 for x"""
-        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
-            r = Rectangle(1, 1, -1)
-
-    def test_y_valueerror(self):
-        """Test ints <= 0 for y"""
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
-            r = Rectangle(1, 1, 1, -1)
-
-    def test_area(self):
-        """test area"""
-        self.assertEqual(self.r1.area(), 100)
-        self.assertEqual(self.r2.area(), 6)
-        self.assertEqual(self.r3.area(), 30)
-        self.assertEqual(self.r4.area(), 132)
-
-
-
-
-
 
