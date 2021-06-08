@@ -574,27 +574,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r3.area(), 30)
         self.assertEqual(self.r4.area(), 132)
 
-    def test_area_args(self):
-        """Test too many args for area()"""
-        with self.assertRaises(TypeError):
-            r = self.r1.area(1)
 
-    def test_basic_display(self):
-        """Test display without x and y"""
-        r = Rectangle(2, 3, 0, 0, 1)
-        with io.StringIO() as buf, redirect_stdout(buf):
-            self.r1.display()
-            output = buf.getvalue()
-            self.assertEqual(output, ("#" * 10 + "\n") * 10)
-        with io.StringIO() as buf, redirect_stdout(buf):
-            r.display()
-            output = buf.getvalue()
-            self.assertEqual(output, ("#" * 2 + "\n") * 3)
-
-    def test_display_too_many_args(self):
-        """Test display with too many args"""
-        with self.assertRaises(TypeError):
-            self.r1.display(1)
 
 
 
