@@ -506,15 +506,6 @@ class TestRectangle(unittest.TestCase):
         cls.r4 = Rectangle(11, 12, 13, 14)
 
 
-
-    def test_width_valueerror(self):
-        """Test ints <= 0 for width"""
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            r = Rectangle(-1, 1)
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            r = Rectangle(0, 1)
-
-
     def test_str(self):
         """Test the str method"""
         self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 10/10")
