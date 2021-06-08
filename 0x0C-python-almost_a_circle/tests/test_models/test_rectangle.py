@@ -474,6 +474,37 @@ class Test_Dictionary_Representation(unittest.TestCase):
 
         self.assertEqual(r1 == r2, False)
 
+    def test_load_from_file(self):
+        """test normal use of load_from_file"""
+        r1 = Rectangle(1, 2, 3, 4, 5)
+        r2 = Rectangle(6, 7, 8, 9, 10)
+        li = [r1, r2]
+        Rectangle.save_to_file(li)
+        lo = Rectangle.load_from_file()
+        self.assertTrue(type(lo) is list)
+        self.assertEqual(len(lo), 2)
+        r1c = lo[0]
+        r2c = lo[1]
+        self.assertTrue(type(r1c) is Rectangle)
+        self.assertTrue(type(r2c) is Rectangle)
+        self.assertEqual(str(r1), str(r1c))
+        self.assertEqual(str(r2), str(r2c))
+        self.assertIsNot(r1, r1c)
+        self.assertIsNot(r2, r2c)
+        self.assertNotEqual(r1, r1c)
+        self.assertNotEqual(r2, r2c)
+
+class TestRectangle(unittest.TestCase):
+    """Test the functionality of the Rectangle class"""
+    @classmethod
+    def setUpClass(cls):
+        """"""
+        Base._Base__nb_objects = 0
+        cls.r1 = Rectangle(10, 10)
+        cls.r2 = Rectangle(2, 3, 4)
+        cls.r3 = Rectangle(5, 6, 7, 8, 9)
+        cls.r4 = Rectangle(11, 12, 13, 14)
+
     def test_mandatory_width(self):
         """Test that width is a mandatory arg"""
         with self.assertRaises(TypeError):
@@ -543,3 +574,89 @@ class Test_Dictionary_Representation(unittest.TestCase):
         self.assertEqual(self.r3.area(), 30)
         self.assertEqual(self.r4.area(), 132)
 
+    def test_area_args(self):
+        """Test too many args for area()"""
+        with self.assertRaises(TypeError):
+            r = self.r1.area(1)
+
+    def test_basic_display(self):
+        """Test display without x and y"""
+        r = Rectangle(2, 3, 0, 0, 1)
+        with io.StringIO() as buf, redirect_stdout(buf):
+            self.r1.display()
+            output = buf.getvalue()
+            self.assertEqual(output, ("#" * 10 + "\n") * 10)
+        with io.StringIO() as buf, redirect_stdout(buf):
+            r.display()
+            output = buf.getvalue()
+            self.assertEqual(output, ("#" * 2 + "\n") * 3)
+
+    def test_display_too_many_args(self):
+        """Test display with too many args"""
+        with self.assertRaises(TypeError):
+            self.r1.display(1)
+
+    def test_str(self):
+        """Test the __str__ method"""
+        self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 10/10")
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 4/0 - 2/3")
+        self.assertEqual(str(self.r3), "[Rectangle] (9) 7/8 - 5/6")
+        self.assertEqual(str(self.r4), "[Rectangle] (3) 13/14 - 11/12")
+
+    def test_display_xy(self):
+        """Testing the display method with x and y"""
+        with io.StringIO() as buf, redirect_stdout(buf):
+            self.r2.display()
+            output = buf.getvalue()
+            self.assertEqual(output, (" " * 4 + "#" * 2 + "\n") * 3)
+
+        with io.StringIO() as buf, redirect_stdout(buf):
+            self.r3.display()
+            output = buf.getvalue()
+            self.assertEqual(output, "\n" * 8 +
+                             (" " * 7 + "#" * 5 + "\n") * 6)
+
+        with io.StringIO() as buf, redirect_stdout(buf):
+            self.r4.display()
+            output = buf.getvalue()
+            self.assertEqual(output, "\n" * 14 +
+                             (" " * 13 + "#" * 11 + "\n") * 12)
+
+    def test_update_args(self):
+        """Testing the udpate method with *args"""
+        r = Rectangle(1, 1, 0, 0, 1)
+        self.assertEqual(str(r), "[Rectangle] (1) 0/0 - 1/1")
+        r.update(89)
+        self.assertEqual(str(r), "[Rectangle] (89) 0/0 - 1/1")
+        r.update(89, 2)
+        self.assertEqual(str(r), "[Rectangle] (89) 0/0 - 2/1")
+        r.update(89, 2, 3)
+        self.assertEqual(str(r), "[Rectangle] (89) 0/0 - 2/3")
+        r.update(89, 2, 3, 4)
+        self.assertEqual(str(r), "[Rectangle] (89) 4/0 - 2/3")
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(str(r), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_args_setter(self):
+        """tests that the update method uses setter with *args"""
+        r = Rectangle(1, 1, 0, 0, 1)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r.update(1, "hello")
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r.update(1, 1, "hello")
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r.update(1, 1, 1, "hello")
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            r.update(1, 1, 1, 1, "hello")
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r.update(1, 0)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r.update(1, -1)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r.update(1, 1, 0)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r.update(1, 1, -1)
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            r.update(1, 1, 1, -1)
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            r.update(1, 1, 1, 1, -1)
