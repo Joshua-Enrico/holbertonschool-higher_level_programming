@@ -274,13 +274,13 @@ class testcases(unittest.TestCase):
     def test_to_dict(self):
         """testting dictionary"""
         test1 = self.c1.to_dictionary()
-        # self.assertEqual({"id": 1, "size": 1, "x": 0, "y": 0}, test1)
+        self.assertEqual({"id": 1, "size": 1, "x": 0, "y": 0}, test1)
         test2 = self.c2.to_dictionary()
-        # self.assertEqual({"id": 2, "size": 2, "x": 3, "y": 0}, test2)
+        self.assertEqual({"id": 2, "size": 2, "x": 3, "y": 0}, test2)
         test3 = self.c3.to_dictionary()
-        # self.assertEqual({"id": 3, "size": 3, "x": 4, "y": 5}, test3)
+        self.assertEqual({"id": 3, "size": 3, "x": 4, "y": 5}, test3)
         test4 = self.c4.to_dictionary()
-        # self.assertEqual({"id": 4, "size": 5, "x": 6, "y": 7}, test4)
+        self.assertEqual({"id": 4, "size": 5, "x": 6, "y": 7}, test4)
         self.assertTrue(type(test1) is dict)
         self.assertTrue(type(test2) is dict)
         self.assertTrue(type(test3) is dict)
