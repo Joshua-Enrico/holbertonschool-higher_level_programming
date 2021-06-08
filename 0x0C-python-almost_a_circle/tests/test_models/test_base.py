@@ -131,7 +131,7 @@ class TestBase(unittest.TestCase):
             Base.save_to_file([Base(1), Base(2)])
 
         self.assertEqual(
-             "type object 'Base' has no attribute 'to_dictionary'",
+             "'Base' object has no attribute 'to_dictionary'",
              str(msg.exception)
         )
 
