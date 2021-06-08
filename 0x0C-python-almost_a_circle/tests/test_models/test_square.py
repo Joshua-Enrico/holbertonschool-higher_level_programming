@@ -7,11 +7,25 @@ import unittest
 import io
 import os
 import json
+import pep8
 from models import square
 from models.base import Base
 from contextlib import redirect_stdout
 Square = square.Square
 
+
+class Test_Rectangle_creation(unittest.TestCase):
+    """A class to test Rectangle Class"""
+    def test_pep8_base(self):
+        """
+        Test that checks PEP8
+        """
+        syntax = pep8.StyleGuide(quit=True)
+        check = syntax.check_files(['models/square.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors (and warnings)."
+        )
 
 class testcases(unittest.TestCase):
     """testing square class"""
