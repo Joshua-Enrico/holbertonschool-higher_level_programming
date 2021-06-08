@@ -130,7 +130,10 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(AttributeError) as msg:
             Base.save_to_file([Base(1), Base(2)])
 
-
+        self.assertEqual(
+             "type object 'Base' has no attribute 'to_dictionary'",
+             str(msg.exception)
+        )
 
     def test_load_from_file(self):
         """
