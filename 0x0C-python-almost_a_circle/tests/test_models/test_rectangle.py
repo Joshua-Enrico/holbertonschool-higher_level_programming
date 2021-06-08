@@ -505,22 +505,27 @@ class TestRectangle(unittest.TestCase):
         cls.r3 = Rectangle(5, 6, 7, 8, 9)
         cls.r4 = Rectangle(11, 12, 13, 14)
 
-    def test_mandatory_width(self):
-        """Test that width is a mandatory arg"""
-        with self.assertRaises(TypeError):
-            r = Rectangle()
+    def test_height_typeerror(self):
+        """Test non-ints for height"""
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r = Rectangle(1, "hello")
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r = Rectangle(1, True)
 
-    def test_mandatory_height(self):
-        """Test that height is a mandatory arg"""
-        with self.assertRaises(TypeError):
-            r = Rectangle(1)
+    def test_x_typeerror(self):
+        """Test non-ints for x"""
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r = Rectangle(1, 1, "hello")
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r = Rectangle(1, 1, True)
 
-    def test_width_typeerror(self):
-        """Test non-ints for width"""
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
-            r = Rectangle("hello", 1)
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
-            r = Rectangle(True, 1)
+    def test_y_typeerror(self):
+        """Test non-ints for y"""
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            r = Rectangle(1, 1, 1, "hello")
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            r = Rectangle(1, 1, 1, True)
+
 
 
 
