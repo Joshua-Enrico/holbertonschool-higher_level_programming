@@ -54,7 +54,7 @@ class TestRectangle(unittest.TestCase):
     """Test the functionality of the Rectangle class"""
     @classmethod
     def setUpClass(cls):
-        """test"""
+        """"""
         Base._Base__nb_objects = 0
         cls.r1 = Rectangle(10, 10)
         cls.r2 = Rectangle(2, 3, 4)
