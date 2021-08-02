@@ -11,4 +11,4 @@ function factorial (myArgs) {
     return (factorial);
   }
 }
-console.log(factorial(myArgs));
+console.log(factorial(parseInt(myArgs)));
