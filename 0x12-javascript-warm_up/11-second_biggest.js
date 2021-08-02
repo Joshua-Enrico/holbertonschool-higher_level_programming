@@ -7,9 +7,7 @@ if (myArgs.length === 0 || myArgs.length < 2) {
   let list = [];
 
   for (const arg in myArgs) {
-    if (!isNaN(myArgs[arg])) {
-      list.push(parseInt(myArgs[arg]));
-    }
+    list.push(parseInt(myArgs[arg]));
   }
   list = list.sort();
   console.log(list);
