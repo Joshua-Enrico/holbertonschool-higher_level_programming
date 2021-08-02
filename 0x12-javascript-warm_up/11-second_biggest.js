@@ -1,8 +1,9 @@
 #!/usr/bin/node
-const myArgs = process.argv.slice(2);
-let Sbiggest = 0;
-if (myArgs.length > 1) {
-  myArgs.sort();
-  Sbiggest = (myArgs[myArgs.slice(2).length]);
+'use strict';
+let nextMax = 0;
+const args = process.argv.slice(2);
+if (args.length > 1) {
+  args.sort();
+  nextMax = args[args.length - 2];
 }
-console.log(Sbiggest);
+console.log(nextMax);
