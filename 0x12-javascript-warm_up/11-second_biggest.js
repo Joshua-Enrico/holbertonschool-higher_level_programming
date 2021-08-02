@@ -7,7 +7,7 @@ if (myArgs.length === 0 || myArgs.length < 2) {
   let list = [];
 
   for (const arg in myArgs) {
-    list.push(parseInt(myArgs[arg]));
+    list.push(myArgs[arg]);
   }
   list = list.sort();
   console.log(list[list.slice(2).length]);
