@@ -1,9 +1,7 @@
 #!/usr/bin/node
 const myArgs = process.argv.slice(2);
 
-if (myArgs.length < 2) {
-  console.log(0);
-} else {
+if (myArgs.length > 1) {
   let list = [];
 
   for (const arg in myArgs) {
@@ -13,4 +11,6 @@ if (myArgs.length < 2) {
   }
   list = list.sort();
   console.log(list[list.slice(2).length]);
+} else {
+  console.log(0);
 }
