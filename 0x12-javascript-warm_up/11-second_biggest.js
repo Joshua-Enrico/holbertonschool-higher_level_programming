@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const myArgs = process.argv.slice(2);
-
+let Sbiggest = 0;
 if (myArgs.length > 1) {
   let list = [];
 
@@ -10,7 +10,6 @@ if (myArgs.length > 1) {
     }
   }
   list = list.sort();
-  console.log(list[list.slice(2).length]);
-} else {
-  console.log(0);
+  Sbiggest = (list[list.slice(2).length]);
 }
+console.log(Sbiggest);
