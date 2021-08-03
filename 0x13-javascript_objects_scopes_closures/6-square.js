@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const Square1 = require('./5-square.js');
 
 module.exports = class Square extends Square1 {
