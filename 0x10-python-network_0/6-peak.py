@@ -11,7 +11,7 @@ def find_peak(list_of_integers):
         return
     m = le // 2
     if (m == le - 1 or new_l[m] >= new_l[m + 1]) and (m == 0 or new_l[m]
-                                                     >= new_l[m - 1]):
+                                                      >= new_l[m - 1]):
         return new_l[m]
     if m != le - 1 and new_l[m + 1] > new_l[m]:
         return find_peak(new_l[m + 1:])
