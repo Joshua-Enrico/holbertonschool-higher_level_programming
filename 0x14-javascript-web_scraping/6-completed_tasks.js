@@ -19,6 +19,6 @@ request(url, function (err, response, body) {
     }
     console.log(completed);
   } else {
-    const tasks = JSON.parse(body);
+    console.log('error ocurred, Status code: ' + response.statusCode);
   }
 });
