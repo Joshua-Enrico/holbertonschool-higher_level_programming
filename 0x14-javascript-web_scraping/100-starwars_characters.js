@@ -8,8 +8,8 @@ request(url + ep, function (err, response, body) {
   } else if (response.statusCode === 200) {
     const jsobj = JSON.parse(body);
     for (const index in jsobj.characters) {
-      char_usr = jsobj.characters[index];
-      request(char_usr, function (err, response, body) {
+      const charusr = jsobj.characters[index];
+      request(charusr, function (err, response, body) {
         if (err) {
           console.log(err);
         } else if (response.statusCode === 200) {
