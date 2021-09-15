@@ -25,7 +25,6 @@ request(url + ep, function (err, response, body) {
     console.log(err);
   } else if (response.statusCode === 200) {
     const jsobj = JSON.parse(body);
-    console.log(jsobj.characters);
     order(jsobj.characters, 0);
   } else {
     console.log('error ocurred, Status code: ' + response.statusCode);
