@@ -7,6 +7,7 @@ request(url + ep, function (err, response, body) {
     console.log(err);
   } else if (response.statusCode === 200) {
     const jsobj = JSON.parse(body);
+    console.log(jsobj.characters);
     for (const index in jsobj.characters) {
       const charusr = jsobj.characters[index];
       request(charusr, function (err, response, body) {
